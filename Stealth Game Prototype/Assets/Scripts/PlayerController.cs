@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private GameObject _player;
-    private float _moveSpeed;
+    public GameObject player;
+    public float baseSpeed;
+    private float _currentSpeed;
     // Use this for initialization
     void Start ()
     {
-        _player = gameObject;
-        _moveSpeed = 5  ;
+        player = gameObject;
+        baseSpeed = 25;
     }
 
     // Update is called once per frame
     void Update ()
     {
-        _moveSpeed = Input.GetKey(KeyCode.LeftShift) ?  7.5F : 5;
+        _currentSpeed = Input.GetKey(KeyCode.LeftShift) ? baseSpeed * 2 : baseSpeed * 1;
 
         if (Input.GetKey(KeyCode.W))
-            _player.transform.position = new Vector2(_player.transform.position.x, _player.transform.position.y + (Time.deltaTime * _moveSpeed));
+            player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + (Time.deltaTime * _currentSpeed));
         if (Input.GetKey(KeyCode.A))
-            _player.transform.position = new Vector2(_player.transform.position.x - (Time.deltaTime * _moveSpeed), _player.transform.position.y);
+            player.transform.position = new Vector2(player.transform.position.x - (Time.deltaTime * _currentSpeed), player.transform.position.y);
         if (Input.GetKey(KeyCode.S))
-            _player.transform.position = new Vector2(_player.transform.position.x, _player.transform.position.y - (Time.deltaTime * _moveSpeed));
+            player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y - (Time.deltaTime * _currentSpeed));
         if (Input.GetKey(KeyCode.D))
-            _player.transform.position = new Vector2(_player.transform.position.x + (Time.deltaTime * _moveSpeed), _player.transform.position.y);
+            player.transform.position = new Vector2(player.transform.position.x + (Time.deltaTime * _currentSpeed), player.transform.position.y);
     }
 }
