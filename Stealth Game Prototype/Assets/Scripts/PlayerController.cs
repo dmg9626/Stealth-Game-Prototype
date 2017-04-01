@@ -20,12 +20,22 @@ public class PlayerController : MonoBehaviour
         _currentSpeed = Input.GetKey(KeyCode.LeftShift) ? baseSpeed * 2 : baseSpeed * 1;
 
         if (Input.GetKey(KeyCode.W))
-            player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + (Time.deltaTime * _currentSpeed));
+            player.transform.position = MoveY(player.transform, _currentSpeed);
         if (Input.GetKey(KeyCode.A))
-            player.transform.position = new Vector2(player.transform.position.x - (Time.deltaTime * _currentSpeed), player.transform.position.y);
+            player.transform.position = MoveX(player.transform, -_currentSpeed);
         if (Input.GetKey(KeyCode.S))
-            player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y - (Time.deltaTime * _currentSpeed));
+            player.transform.position = MoveY(player.transform, -_currentSpeed);
         if (Input.GetKey(KeyCode.D))
-            player.transform.position = new Vector2(player.transform.position.x + (Time.deltaTime * _currentSpeed), player.transform.position.y);
+            player.transform.position = MoveX(player.transform, _currentSpeed);
+    }
+
+    private Vector2 MoveX(Transform transform, float velocity)
+    {
+        return new Vector2(transform.position.x + (Time.deltaTime * velocity), transform.position.y);
+    }
+
+    private Vector2 MoveY(Transform transform, float velocity)
+    {
+        return new Vector2(transform.position.x, transform.position.y + (Time.deltaTime * velocity));
     }
 }
