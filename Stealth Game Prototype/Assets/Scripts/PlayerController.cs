@@ -14,19 +14,18 @@ public class PlayerController : MonoBehaviour
         baseSpeed = 25;
     }
 
-    // Update is called once per frame
     void Update ()
     {
         _currentSpeed = Input.GetKey(KeyCode.LeftShift) ? baseSpeed * 2 : baseSpeed * 1;
 
         if (Input.GetKey(KeyCode.W))
-            player.transform.position = MoveY(player.transform, _currentSpeed);
+            player.transform.position = MoveY(player.transform, baseSpeed);
         if (Input.GetKey(KeyCode.A))
-            player.transform.position = MoveX(player.transform, -_currentSpeed);
+            player.transform.position = MoveX(player.transform, -baseSpeed);
         if (Input.GetKey(KeyCode.S))
-            player.transform.position = MoveY(player.transform, -_currentSpeed);
+            player.transform.position = MoveY(player.transform, -baseSpeed);
         if (Input.GetKey(KeyCode.D))
-            player.transform.position = MoveX(player.transform, _currentSpeed);
+            player.transform.position = MoveX(player.transform, baseSpeed);
     }
 
     private Vector2 MoveX(Transform transform, float velocity)
